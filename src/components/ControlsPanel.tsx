@@ -69,18 +69,19 @@ export const ControlsPanel: React.FC = () => {
         <div className="panel-row">
           <div>
             <div className="panel-title">
-              GPU Acceleration <span className="beta-badge">BETA</span>
+              GPU Acceleration{' '}
+              <span
+                className="beta-badge"
+                data-tooltip="Chrome, Edge, and Safari utilize your physical GPU; Firefox falls back to optimized CPU-based native encoding via OpenH264."
+              >
+                BETA
+              </span>
             </div>
             <div className="panel-sub">
               {isWebCodecsSupported
-                ? 'Uses WebCodecs API for 10x-50x faster GPU-accelerated exports.'
-                : 'Not supported in your browser (e.g. Firefox). Falls back to CPU encoding.'}
+                ? 'Uses WebCodecs API for 10x-50x faster GPU-accelerated exports (speed depends on your hardware).'
+                : 'WebCodecs is not supported in this browser. Falls back to standard CPU re-encoding.'}
             </div>
-            {!isWebCodecsSupported && (
-              <div className="firefox-note">
-                Firefox users: Native WebCodecs encoding is currently unsupported by Mozilla. Switch to Chrome or Edge for GPU speeds.
-              </div>
-            )}
           </div>
           <button
             className={`switch ${isWebCodecsSupported && gpuAcceleration ? 'on' : ''} ${!isWebCodecsSupported ? 'disabled' : ''}`}

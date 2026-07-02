@@ -311,7 +311,7 @@ export const ExportBar: React.FC = () => {
       const progressPercent = Math.round(ffmpegProgress * 100);
       return `Working (${progressPercent}%)`;
     }
-    if (isDone) return 'Save Video File 💾';
+    if (isDone) return 'Save Video File';
     if (isError) return 'Export failed ✗';
     return 'Trim & download';
   };
@@ -328,8 +328,8 @@ export const ExportBar: React.FC = () => {
     <div className="export-bar">
       <div className="export-info">
         {trimMode === 'copy'
-          ? 'Cut is snapped to the nearest keyframe. Export happens entirely in your browser.'
-          : 'Video will be re-encoded to match your target settings. Export happens entirely in your browser.'}
+          ? 'Cut is snapped to the nearest keyframe. Export happens entirely in your browser (speed depends on your hardware).'
+          : 'Video will be re-encoded to match your target settings. Export happens entirely in your browser (speed depends on your hardware).'}
       </div>
       
       <button
