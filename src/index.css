@@ -1,0 +1,70 @@
+:root {
+  --bg: #FBEFEF;
+  --surface: #FFE2E2;
+  --surface-2: #F5CBCB;
+  --accent: #C5B3D3;
+  --accent-ink: #4A3A57;
+  --ink: #3A2E33;
+  --ink-soft: #6B5860;
+  --danger: #8C4A52;
+  --frame: #2B2229;
+  --ok: #5C7A5E;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Roboto Mono', monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 80px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 100%;
+  max-width: 880px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Global utility for button resets */
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  outline: none;
+}
+
+/* Accessibility: Keyboard focus highlights */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 2px;
+}
+
+/* Motion system prefers-reduced-motion media query */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

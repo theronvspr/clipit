@@ -1,0 +1,248 @@
+.timeline-wrap {
+  margin-top: 18px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  width: 100%;
+}
+
+.timeline-row {
+  position: relative;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ──── Thumbnail strip ──── */
+.timeline-thumbnails {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.timeline-thumb {
+  flex: 1;
+  height: 100%;
+  object-fit: cover;
+  min-width: 0;
+  opacity: 0.65;
+}
+
+/* ──── Selection overlay ──── */
+.selection {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--accent);
+  opacity: 0.55;
+  border-top: 2px solid var(--accent-ink);
+  border-bottom: 2px solid var(--accent-ink);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ──── Playhead ──── */
+.playhead {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  background: var(--danger);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.playhead::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--danger);
+}
+
+/* ──── Trim handles ──── */
+.handle {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  width: 12px;
+  background: var(--accent-ink);
+  border-radius: 4px;
+  cursor: ew-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: transform 0.1s var(--ease), background-color 0.2s var(--ease);
+}
+
+.handle::after {
+  content: '';
+  width: 2px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1px;
+}
+
+.handle:hover,
+.handle:focus-visible {
+  background-color: #5d4a6d;
+  transform: scaleY(1.05);
+}
+
+.handle:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+}
+
+/* ──── Time labels ──── */
+.time-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  user-select: none;
+}
+
+/* ──── Scroll container ──── */
+.timeline-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 0;
+  border-radius: var(--radius-sm);
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-ink) var(--surface-2);
+}
+
+.timeline-scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.timeline-scroll-container::-webkit-scrollbar-track {
+  background: var(--surface-2);
+  border-radius: 3px;
+}
+
+.timeline-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--accent-ink);
+  border-radius: 3px;
+}
+
+.timeline-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #3b2f46;
+}
+
+/* ──── Controls row (zoom + volume) ──── */
+.timeline-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  user-select: none;
+}
+
+.timeline-zoom-controls,
+.timeline-volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctrl-label {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Shared slider style for zoom and volume */
+.ctrl-slider {
+  width: 100px;
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ctrl-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 2px;
+}
+
+.ctrl-slider::-webkit-slider-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: var(--accent-ink);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -3px;
+}
+
+.ctrl-slider::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 2px;
+}
+
+.ctrl-slider::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: var(--accent-ink);
+  cursor: pointer;
+  border: none;
+}
+
+.ctrl-value {
+  font-weight: 600;
+  width: 32px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ──── Volume-specific ──── */
+.volume-mute-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  border-radius: 4px;
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+}
+
+.volume-mute-btn:hover {
+  color: var(--accent-ink);
+  background: var(--surface-2);
+}
+
+.volume-slider-db {
+  width: 80px;
+}
+
+.volume-db-label {
+  width: 44px;
+  font-variant-numeric: tabular-nums;
+}

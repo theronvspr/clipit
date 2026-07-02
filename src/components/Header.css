@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  user-select: none;
+}
+
+.logo span {
+  color: var(--danger);
+}
