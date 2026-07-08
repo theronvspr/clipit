@@ -4,6 +4,10 @@ if (typeof window === 'undefined') {
   self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
 
   self.addEventListener('fetch', (event) => {
+    const url = event.request.url;
+    if (!url.startsWith('http:') && !url.startsWith('https:')) {
+      return;
+    }
     if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
       return;
     }
@@ -24,6 +28,7 @@ if (typeof window === 'undefined') {
         })
         .catch((e) => {
           console.error('COI Service Worker fetch error:', e);
+          throw e;
         })
     );
   });
